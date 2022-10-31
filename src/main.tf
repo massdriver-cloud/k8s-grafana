@@ -15,7 +15,7 @@ module "application" {
 
 resource "helm_release" "main" {
   name             = var.md_metadata.name_prefix
-  chart            = "mimir-distributed"
+  chart            = "grafana"
   repository       = "https://grafana.github.io/helm-charts"
   version          = local.chart_version
   namespace        = var.namespace
