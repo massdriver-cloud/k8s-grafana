@@ -1,4 +1,4 @@
-# k8s-grafana-grafana
+# k8s-grafana
 
 Grafana on Kubernetes
 
