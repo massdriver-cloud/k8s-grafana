@@ -5,7 +5,7 @@ source_url: github.com/massdriver-cloud/k8s-grafana
 access: private
 type: application
 app:
-  envs:
+  envs: []
   # LOG_LEVEL: .params.configuration.log_level
   policies: []
 params:
