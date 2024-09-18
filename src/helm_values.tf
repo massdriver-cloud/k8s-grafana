@@ -1,13 +1,13 @@
-module "massdriver_helm_values" {
-  source                 = "github.com/massdriver-cloud/terraform-modules//massdriver-helm-values"
-  massdriver_application = module.application
-}
-
 locals {
   helm_values = {
-      serviceAccount = merge({
-      # explicitly set the service account name
-      name = var.md_metadata.name_prefix
-    }, module.massdriver_helm_values.k8s_service_account)
+    commonLabels = module.application.params.md_metadata.default_tags
+    pod = {
+      annotations = {
+        "md-deployment-tag" = lookup(module.application.params.md_metadata.deployment, "id", "")
+      }
+    }
+    envs           = [for key, val in module.application.envs : { name = key, value = tostring(val) }]
+    serviceAccount = local.cloud_service_accounts[module.application.cloud]
+    labels         = var.md_metadata.default_tags
   }
 }

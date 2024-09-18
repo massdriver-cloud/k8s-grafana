@@ -6,8 +6,8 @@ access: private
 type: application
 
 app:
-  envs:
-    LOG_LEVEL: .params.configuration.log_level
+  envs: {}
+  # LOG_LEVEL: .params.configuration.log_level
   policies: []
 
 params:
@@ -36,4 +36,4 @@ connections:
 ui:
   ui:order:
     - namespace
-    - "*"
+    - '*'
