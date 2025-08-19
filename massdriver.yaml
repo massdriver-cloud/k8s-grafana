@@ -3,7 +3,6 @@ name: k8s-grafana
 version: 1.0.0
 description: Grafana on Kubernetes
 source_url: https://github.com/massdriver-cloud/k8s-grafana
-type: application
 app:
   envs: {}
   policies: []
