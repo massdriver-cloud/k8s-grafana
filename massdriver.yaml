@@ -1,39 +1,39 @@
 schema: draft-07
 name: k8s-grafana
+version: 1.0.0
 description: Grafana on Kubernetes
-source_url: github.com/massdriver-cloud/k8s-grafana
-access: private
-type: application
-
+source_url: https://github.com/massdriver-cloud/k8s-grafana
 app:
   envs: {}
-  # LOG_LEVEL: .params.configuration.log_level
   policies: []
-
 params:
   required:
-    - namespace
+  - namespace
   properties:
     namespace:
       title: Kubernetes Namespace
       description: Application will be deployed into this namespace. If the namespace doesn't exist, it will be created.
-      $ref: https://raw.githubusercontent.com/massdriver-cloud/artifact-definitions/main/definitions/types/k8s-resource-name.json
+      "$ref": https://raw.githubusercontent.com/massdriver-cloud/artifact-definitions/main/definitions/types/k8s-resource-name.json
       default: default
-
 connections:
   required:
-    - kubernetes_cluster
+  - kubernetes_cluster
   properties:
     kubernetes_cluster:
-      $ref: massdriver/kubernetes-cluster
+      "$ref": massdriver/kubernetes-cluster
     aws_authentication:
-      $ref: massdriver/aws-iam-role
+      "$ref": massdriver/aws-iam-role
     gcp_authentication:
-      $ref: massdriver/gcp-service-account
+      "$ref": massdriver/gcp-service-account
     azure_authentication:
-      $ref: massdriver/azure-service-principal
-
+      "$ref": massdriver/azure-service-principal
 ui:
   ui:order:
-    - namespace
-    - '*'
+  - namespace
+  - "*"
+steps:
+- path: src
+  provisioner: opentofu
+  config:
+    checkov:
+      enable: true
